@@ -8,10 +8,26 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
+from tkinter import *
+import tkinter.font
+from gpiozero import LED
+import RPi.GPIO
+
+RPi.GPIO.setmode(RPi.GPIO.BCM)
+led = LED(23)
+
+def ledToggle():
+    if led.is_lit:
+        led.off()
+        #ledButton["text"] = "Turn LED on"
+    else:
+        led.on()
+        #ledButton["text"] = "Turn LED off"
 
 def btn_clicked():
-    print("Button Pressed")
-    QMessageBox.information(MainWindow, 'Welcome', 'PyQt5 + Raspberry PI')
+    #print("Button Pressed")
+    #QMessageBox.information(MainWindow, 'Welcome', 'PyQt5 + Raspberry PI')
+    ledToggle()
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
